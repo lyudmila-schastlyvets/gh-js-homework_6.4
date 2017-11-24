@@ -1,0 +1,93 @@
+body {
+  padding: 0 8px;
+  background-image: url("./images/1.jpg");
+  background-size: cover;
+  font-family: 'Press Start 2P', cursive;
+}
+
+p {
+  font-size: 12px;
+  line-height: 1.2rem;
+}
+
+.main{
+  max-width: 400px;
+  margin: 5% auto;
+  border: 1px solid #f8f8f8;
+  padding: 20px;
+  background: #fff;
+  border-radius:30px;
+  -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+}
+
+.message{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  height: 90px;
+  padding: 20px 5px 10px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  background: #f5f5f5;
+}
+
+.animation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.animation img{
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 140px;
+}
+
+.information{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 16px;
+}
+
+.information div {
+  padding: 0 10px;
+  line-height: 1.5rem;
+}
+
+.controls button {
+  padding: 5px 20px;
+  width: 76px;
+  height: 76px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+#eat{
+  background-image: url("./images/arcade_orange_half.png");
+  background-size: cover;
+  color: #f8f8f8;
+  font-size: 14px;
+}
+#sleep{
+  background-image: url("./images/175x175bb.jpg");
+  background-size: cover;
+  color: #f8f8f8;
+  font-size: 14px;
+}
+#walk{
+  background-image: url("./images/arcade_green_half.png");
+  background-size: cover;
+  color: #f8f8f8;
+  font-size: 14px;
+}

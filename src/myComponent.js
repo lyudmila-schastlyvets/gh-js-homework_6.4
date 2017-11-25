@@ -26,21 +26,15 @@ export default class MyComponent extends Component {
         this.welcome = this.welcome.bind(this)
         this.normal = this.normal.bind(this)
         this.updateColor = this.updateColor.bind(this)
-        this.disbleBtn = this.disbleBtn.bind(this)
+        this.disableBtn = this.disableBtn.bind(this)
         this.enableBtn = this.enableBtn.bind(this)
-    }
-
-    disbleBtn() {
-        for (var btn = document.getElementsByTagName('BUTTON'), j = 0, lj = btn.length; j < lj; j++)
-            btn[j].disabled = true
-    }
-    enableBtn() {
-        for (var btn = document.getElementsByTagName('BUTTON'), j = 0, lj = btn.length; j < lj; j++)
-            btn[j].disabled = false
+        this.eatClick = this.eatClick.bind(this)
+        this.sleepClick = this.sleepClick.bind(this)
+        this.walkClick = this.walkClick.bind(this)
     }
 
     componentDidMount() {
-        this.disbleBtn()
+        this.disableBtn()
         this.updateStatus()
         this.updateColor()
         this.welcome()
@@ -61,6 +55,17 @@ export default class MyComponent extends Component {
         this.updateParameters('currentImage', require('./images/normal.gif'))
     }
 
+    disableBtn() {
+        for (var btn = document.getElementsByTagName('button'), j = 0, lj = btn.length; j < lj; j++)
+            btn[j].disabled = true
+        console.log('btn')
+    }
+
+    enableBtn() {
+        for (var btn = document.getElementsByTagName('BUTTON'), j = 0, lj = btn.length; j < lj; j++)
+            btn[j].disabled = false
+    }
+
     eat() {
         if (this.state.satiety < 80) {
             this.updateParameters('message', "Om Nom Nom")
@@ -71,7 +76,6 @@ export default class MyComponent extends Component {
         else {
             this.updateParameters('message', "I do not want to eat now")
         }
-        this.healthStatus()
     }
 
     walk() {
@@ -81,7 +85,7 @@ export default class MyComponent extends Component {
             window.location.reload()
         }
         else {
-            this.disbleBtn()
+            this.disableBtn()
             this.updateParameters('currentImage', require('./images/image049.gif'))
             this.updateParameters('message', "YaHoo! So interesting and I am steel alive")
             this.updateParameters('happiness', this.state.happiness + 10)
@@ -106,12 +110,11 @@ export default class MyComponent extends Component {
                 this.updateParameters('message', "I'm very tired, I want to sleep")
             }
         }
-        this.healthStatus()
     }
 
     sleep() {
         if (this.state.fatigue < 50) {
-            this.disbleBtn()
+            this.disableBtn()
             this.updateParameters('currentImage', require('./images/sleep.gif'))
             var i = 10
             var int = setInterval(function () {
@@ -129,7 +132,6 @@ export default class MyComponent extends Component {
         else {
             this.updateParameters('message', "I don't want sleep now! go for walk with me!")
         }
-        this.healthStatus()
     };
 
     healthStatus() {
@@ -137,17 +139,6 @@ export default class MyComponent extends Component {
             alert("WASTED")
             window.location.reload()
         }
-    }
-
-    updateStatus() {
-        return (
-            <div className="information">
-                {this.updateColor()}
-                <div className="col-md-4" id="health" style={{color: this.state.healthColor}}>Health<br/>{this.state.health}</div>
-                <div className="col-md-4" id="satiety" style={{color: this.state.satietyColor}}>Satiety<br/>{this.state.satiety}</div>
-                <div className="col-md-4" id="happiness" style={{color: this.state.happinessColor}}>Happiness<br/>{this.state.happiness}</div>
-            </div>
-        )
     }
 
     updateParameters(value, param) {
@@ -182,6 +173,44 @@ export default class MyComponent extends Component {
         else this.state.happinessColor = '#4CAF50'
     }
 
+    eatClick() {
+        clearTimeout(this.normal())
+        this.disableBtn()
+        this.eat()
+        setTimeout(function(){this.normal()}.bind(this), 9000)
+        setTimeout(function(){this.enableBtn()}.bind(this), 9000)
+    }
+
+    sleepClick() {
+        clearTimeout(this.normal())
+        this.disableBtn()
+        this.sleep()
+        setTimeout(function(){this.normal()}.bind(this), 10*1000)
+        setTimeout(function(){this.enableBtn()}.bind(this), 10*1000)
+    }
+
+    walkClick() {
+        clearTimeout(this.normal());
+        this.disableBtn();
+        this.walk();
+        this.updateStatus();
+        this.updateColor();
+        setTimeout(function(){this.normal()}.bind(this), 8200)
+        setTimeout(function(){this.enableBtn()}.bind(this), 8200)
+    }
+
+    updateStatus() {
+        return (
+            <div className="information">
+                {this.healthStatus()}
+                {this.updateColor()}
+                <div className="col-md-4" id="health" style={{color: this.state.healthColor}}>Health<br/>{this.state.health}</div>
+                <div className="col-md-4" id="satiety" style={{color: this.state.satietyColor}}>Satiety<br/>{this.state.satiety}</div>
+                <div className="col-md-4" id="happiness" style={{color: this.state.happinessColor}}>Happiness<br/>{this.state.happiness}</div>
+            </div>
+        )
+    }
+
     render() {
         return (
             <div>
@@ -193,9 +222,9 @@ export default class MyComponent extends Component {
                     <p>{this.state.message}</p>
                 </div>
                 <div className="controls">
-                    <button id="eat" onClick={this.eat}>Eat</button>
-                    <button id="walk" onClick={this.walk}>Walk</button>
-                    <button id="sleep" onClick={this.sleep}>Sleep</button>
+                    <button id="eat" onClick={this.eatClick}>Eat</button>
+                    <button id="walk" onClick={this.walkClick}>Walk</button>
+                    <button id="sleep" onClick={this.sleepClick}>Sleep</button>
                 </div>
             </div>
         )

@@ -91,3 +91,15 @@ button[disabled] {
   color: #f8f8f8;
   font-size: 14px;
 }
+
+.orange-color {
+  color: #FF9800;
+}
+
+.red-color {
+  color: #FF5722;
+}
+
+.green-color {
+  color: #4CAF50;
+}

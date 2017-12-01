@@ -35,7 +35,6 @@ export default class MyComponent extends Component {
     componentDidMount() {
         this.disableBtn()
         this.updateStatus()
-        this.updateColor()
         this.welcome()
         setTimeout(function () {
             this.normal()
@@ -162,30 +161,15 @@ export default class MyComponent extends Component {
         }
     }
 
-    updateColor() {
-        if (this.state.satiety <= 10){
-            this.state.satietyColor = '#FF5722'
+    updateColor(quantity) {
+        if (quantity <= 10){
+            return 'red-color'
         }
-        else if (this.state.satiety <= 30){
-            this.state.satietyColor = '#FF9800'
+        else if (quantity <= 30){
+            return 'orange-color'
         }
-        else this.state.satietyColor = '#4CAF50'
-
-        if (this.state.health <= 10){
-            this.state.healthColor = '#FF5722'
-        }
-        else if (this.state.health <= 30){
-            this.state.healthColor = '#FF9800'
-        }
-        else this.state.healthColor = '#4CAF50'
-
-        if (this.state.happiness <= 10){
-            this.state.happinessColor = '#FF5722'
-        }
-        else if (this.state.happiness <= 30){
-            this.state.happinessColor = '#FF9800'
-        }
-        else this.state.happinessColor = '#4CAF50'
+        else
+            return 'green-color'
     }
 
     eatClick() {
@@ -217,10 +201,9 @@ export default class MyComponent extends Component {
         return (
             <div className="information">
                 {this.healthStatus()}
-                {this.updateColor()}
-                <div className="col-md-4" id="health" style={{color: this.state.healthColor}}>Health<br/>{this.state.health}</div>
-                <div className="col-md-4" id="satiety" style={{color: this.state.satietyColor}}>Satiety<br/>{this.state.satiety}</div>
-                <div className="col-md-4" id="happiness" style={{color: this.state.happinessColor}}>Happiness<br/>{this.state.happiness}</div>
+                <div className={this.updateColor(this.state.health)} id="health" >Health<br/>{this.state.health}</div>
+                <div className={this.updateColor(this.state.satiety)} id="satiety" >Satiety<br/>{this.state.satiety}</div>
+                <div className={this.updateColor(this.state.happiness)} id="happiness">Happiness<br/>{this.state.happiness}</div>
             </div>
         )
     }

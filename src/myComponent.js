@@ -198,10 +198,9 @@ export default class MyComponent extends Component {
 
     sleepClick() {
         clearTimeout(this.normal())
-        this.disableBtn()
         this.sleep()
-        setTimeout(function(){this.normal()}.bind(this), 10*1000)
-        setTimeout(function(){this.enableBtn()}.bind(this), 10*1000)
+        setTimeout(function(){this.normal()}.bind(this), 10*1100)
+        setTimeout(function(){this.enableBtn()}.bind(this), 10*1100)
     }
 
     walkClick() {

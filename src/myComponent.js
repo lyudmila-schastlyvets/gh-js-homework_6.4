@@ -88,7 +88,7 @@ export default class MyComponent extends Component {
     walk() {
         var random = Math.floor(Math.random() * (100 - 1))
         if (random <= 5) {
-            alert("Ohh A large balcony fell on your pet, He is dead! Game will restart")
+            alert('Ohh A large balcony fell on your pet, He is dead! Game will restart')
             window.location.reload()
         }
         else {
@@ -157,7 +157,7 @@ export default class MyComponent extends Component {
 
     healthStatus() {
         if (this.state.health < 10 || this.state.satiety < 10) {
-            alert("WASTED")
+            alert('WASTED')
             window.location.reload()
         }
     }

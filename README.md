@@ -18,7 +18,7 @@ Node.js
  
 ### Start Application
 
- * You just need to use command "npm start" or "npm start run" to run application.
+ * You just need to use command "npm start" or "npm run start" to run application.
 
 ### Technologies Used
 
